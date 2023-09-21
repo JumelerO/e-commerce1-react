@@ -1,14 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Layout } from "../../Components/Layout"
 import { Card } from "../../Components/Card"
-import ProductDetail  from "../../Components/ProductDetail"
+import {ProductDetail}  from "../../Components/ProductDetail"
+import { Checkout } from "../../Components/Checkout"
 import { ShoppingCartContext } from "../../Context"
 import { useEffect, useState, useContext } from "react"
 
 function Clothes() {
 
     const [items, setItems] = useState(null)
-    const { isProductDetailOpen, searchValue } = useContext(ShoppingCartContext)
+    const { isProductDetailOpen, searchValue, isCheckoutOpen } = useContext(ShoppingCartContext)
 
     useEffect(() => {
         fetch('https://api.escuelajs.co/api/v1/categories/1/products')
@@ -37,6 +38,7 @@ function Clothes() {
                         }
                     </div>
                     { isProductDetailOpen && <ProductDetail />}
+                    { isCheckoutOpen && <Checkout /> }
             </Layout>
         </>
     )

@@ -3,7 +3,7 @@ import { Layout } from "../../Components/Layout"
 import { Card } from "../../Components/Card"
 import { Checkout } from "../../Components/Checkout"
 import { useEffect, useContext } from "react"
-import ProductDetail from "../../Components/ProductDetail"
+import {ProductDetail} from "../../Components/ProductDetail"
 import { ShoppingCartContext } from "../../Context"
 
 
@@ -14,15 +14,10 @@ function Home() {
     useEffect(() => {
         fetch('https://api.escuelajs.co/api/v1/products')
         .then(res => res.json())
-        .then(res => setItems(res))
-        .catch()    
+        .then(res => setItems(res)) 
     }, [])
 
-    useEffect(() => {
-        console.log(items);
-    }, [items])
-
-    const searchedProducts = items?.filter(product => product.title.includes(searchValue))
+    const searchedProducts = items?.filter(product => product.title.toLowerCase().includes(searchValue.toLowerCase()))
 
     return(
         <>

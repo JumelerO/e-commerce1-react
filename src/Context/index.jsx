@@ -10,6 +10,10 @@ function ShoppingCartProvider({ children }) {
     const [isProductDetailOpen, setIsProductDetailOpen] = useState(false)
     const [searchValue, setSearchValue] = useState('')
     const [isCheckoutOpen, setIsCheckoutOpen] = useState(false)
+    const [isCheckoutClicked, setIsCheckoutClicked] = useState(false)
+    const [orders, setOrders] = useState({
+        orders: [],
+    })
     const [checkoutProducts, setCheckoutProducts] = useState({
         products: [],
         totalPrice: 0
@@ -39,6 +43,10 @@ function ShoppingCartProvider({ children }) {
             setCheckoutProducts,
             isCheckoutOpen,
             setIsCheckoutOpen,
+            isCheckoutClicked,
+            setIsCheckoutClicked,
+            orders,
+            setOrders
         }}>
             {children}
         </ShoppingCartContext.Provider>

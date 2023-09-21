@@ -11,8 +11,8 @@ import { Electronics } from '../Electronics'
 import { Furniture } from '../Furniture'
 import { Others } from '../Others'
 import { NavBar } from '../../Components/NavBar'
-import './App.css'
 import { SearchInput } from '../../Components/SearchInput'
+import './App.css'
 
 const AppRoutes = () => {
   const routes = useRoutes([
@@ -32,15 +32,17 @@ const AppRoutes = () => {
 }
 
 function App() {
+
   return (
     <ShoppingCartProvider>
       <BrowserRouter>
         <SearchInput />
         <AppRoutes />
-        <NavBar />  
+        <NavBar /> 
       </BrowserRouter>
     </ShoppingCartProvider>
   )
+
 }
 
 export default App

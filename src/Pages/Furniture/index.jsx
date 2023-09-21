@@ -2,13 +2,13 @@
 import { Layout } from "../../Components/Layout"
 import { Card } from "../../Components/Card"
 import { useEffect, useContext } from "react"
-import ProductDetail from "../../Components/ProductDetail"
+import {ProductDetail} from "../../Components/ProductDetail"
+import { Checkout } from "../../Components/Checkout"
 import { ShoppingCartContext } from "../../Context"
-
 
 function Furniture() {
 
-    const { isProductDetailOpen, items, setItems, searchValue } = useContext(ShoppingCartContext)
+    const { isProductDetailOpen, items, setItems, searchValue, isCheckoutOpen } = useContext(ShoppingCartContext)
 
     useEffect(() => {
         fetch('https://api.escuelajs.co/api/v1/categories/3/products')
@@ -37,6 +37,7 @@ function Furniture() {
                     }
                 </div>
                 { isProductDetailOpen && <ProductDetail />}
+                { isCheckoutOpen && <Checkout /> }
             </Layout>
             
         </>
