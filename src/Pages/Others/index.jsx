@@ -2,25 +2,32 @@
 import { Layout } from "../../Components/Layout"
 import { Card } from "../../Components/Card"
 import {ProductDetail}  from "../../Components/ProductDetail"
+import { SearchInput } from '../../Components/SearchInput'
+import { Checkout } from "../../Components/Checkout"
 import { ShoppingCartContext } from "../../Context"
-import { useEffect, useContext } from "react"
+import { useEffect, useState, useContext } from "react"
 
 function Others() {
 
-    const { isProductDetailOpen, items, setItems } = useContext(ShoppingCartContext)
+    const [items, setItems] = useState(null)
+    const { isProductDetailOpen, searchValue, isCheckoutOpen } = useContext(ShoppingCartContext)
 
     useEffect(() => {
         fetch('https://api.escuelajs.co/api/v1/categories/5/products')
         .then(res => res.json())
-        .then(res => setItems(res))
+        .then(res => setItems(res))   
     }, [])
+
+    const searchedProducts = items?.filter(product => product.title.toLowerCase().includes(searchValue.toLowerCase()))
+
 
     return(
         <>
+            <SearchInput />
             <Layout>
                 <div className="grid grid-cols-4 gap-4 w-full max-w-screen-lg">
                         {
-                            items?.map(item => (
+                            searchedProducts?.map(item => (
                             <Card 
                                 key = { item.id }
                                 categoryName = { item.category?.name }
@@ -33,6 +40,7 @@ function Others() {
                         }
                     </div>
                     { isProductDetailOpen && <ProductDetail />}
+                    { isCheckoutOpen && <Checkout /> }
             </Layout>
         </>
     )

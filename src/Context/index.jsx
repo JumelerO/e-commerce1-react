@@ -4,6 +4,7 @@ import { createContext, useState } from "react"
 const ShoppingCartContext = createContext()
 
 function ShoppingCartProvider({ children }) {
+    
     // States
     const [cartCounter, setCartCounter] = useState(0)
     const [items, setItems] = useState(null)
@@ -11,9 +12,10 @@ function ShoppingCartProvider({ children }) {
     const [searchValue, setSearchValue] = useState('')
     const [isCheckoutOpen, setIsCheckoutOpen] = useState(false)
     const [isCheckoutClicked, setIsCheckoutClicked] = useState(false)
-    const [orders, setOrders] = useState({
-        orders: [],
-    })
+    const [orders, setOrders] = useState([])
+    const [orderToShow, setOrderToShow] = useState(null)
+    const [isOrderToShowOpen, setIsOrderToShowOpen] = useState(false)
+    const [isOrdersOpen, setIsOrdersOpen] = useState(true)
     const [checkoutProducts, setCheckoutProducts] = useState({
         products: [],
         totalPrice: 0
@@ -24,8 +26,6 @@ function ShoppingCartProvider({ children }) {
         description: "",
         image: "",
     })
-
-    // Functions
 
     return(
         <ShoppingCartContext.Provider value={{
@@ -46,7 +46,13 @@ function ShoppingCartProvider({ children }) {
             isCheckoutClicked,
             setIsCheckoutClicked,
             orders,
-            setOrders
+            setOrders,
+            orderToShow,
+            setOrderToShow,
+            isOrderToShowOpen,
+            setIsOrderToShowOpen,
+            isOrdersOpen,
+            setIsOrdersOpen
         }}>
             {children}
         </ShoppingCartContext.Provider>

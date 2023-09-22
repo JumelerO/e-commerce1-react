@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Layout } from "../../Components/Layout"
+import { SearchInput } from '../../Components/SearchInput'
 import { Card } from "../../Components/Card"
 import { Checkout } from "../../Components/Checkout"
 import { useEffect, useContext } from "react"
@@ -21,6 +22,7 @@ function Home() {
 
     return(
         <>
+            <SearchInput />
             <Layout>
                 <div className="grid grid-cols-4 gap-4 w-full max-w-screen-lg">
                     {

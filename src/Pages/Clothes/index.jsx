@@ -2,6 +2,7 @@
 import { Layout } from "../../Components/Layout"
 import { Card } from "../../Components/Card"
 import {ProductDetail}  from "../../Components/ProductDetail"
+import { SearchInput } from '../../Components/SearchInput'
 import { Checkout } from "../../Components/Checkout"
 import { ShoppingCartContext } from "../../Context"
 import { useEffect, useState, useContext } from "react"
@@ -22,6 +23,7 @@ function Clothes() {
 
     return(
         <>
+            <SearchInput />
             <Layout>
                 <div className="grid grid-cols-4 gap-4 w-full max-w-screen-lg">
                         {

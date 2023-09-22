@@ -2,10 +2,11 @@ import { useContext } from 'react'
 import { Aside } from '../../Components/Aside'
 import { CheckoutProduct } from '../CheckoutProduct'
 import { ShoppingCartContext } from '../../Context'
+import { NavLink } from 'react-router-dom'
 
 function Checkout() {
 
-    const { checkoutProducts, setCheckoutProducts, setCartCounter, setIsCheckoutClicked } = useContext(ShoppingCartContext)
+    const { checkoutProducts, setCheckoutProducts, setCartCounter, setIsCheckoutClicked, setOrders, setIsCheckoutOpen } = useContext(ShoppingCartContext)
 
     return(
         <Aside asideTitle='Checkout'>
@@ -24,10 +25,16 @@ function Checkout() {
                     <p>Total:</p>
                     <p>${ checkoutProducts?.totalPrice }</p>
                 </div>
-                <button className='px-8 py-2 rounded-lg bg-black text-white text-2xl hover:bg-neutral-900 transition-colors duration-100' onClick={() => (setCheckoutProducts({
-                    products: [],
-                    totalPrice: 0
-                }), setCartCounter(0), setIsCheckoutClicked(true))}>Checkout</button>
+                <NavLink to='my-orders'>
+                    <button className='px-8 py-2 rounded-lg bg-black text-white text-2xl hover:bg-neutral-900 transition-colors duration-100' onClick={() => {if(checkoutProducts.products.length > 0) setOrders(prevOrders => {
+                        const newOrders = [...prevOrders]
+                        newOrders.push(checkoutProducts)
+                        return newOrders
+                    }), setCheckoutProducts({
+                        products: [],
+                        totalPrice: 0
+                    }), setCartCounter(0), setIsCheckoutClicked(true), setIsCheckoutOpen(false)}}>Checkout</button>
+                </NavLink>
             </main>
         </Aside>
     )

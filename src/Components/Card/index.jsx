@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 
 import { useState, useContext, useEffect } from "react"
@@ -5,15 +6,11 @@ import { ShoppingCartContext } from "../../Context"
 
 function Card({ categoryName, imageURL, title, price, description }) {
 
-    const { setCartCounter, setIsProductDetailOpen, setProductToShow, setIsCheckoutOpen, setCheckoutProducts, isCheckoutClicked, setIsCheckoutClicked, checkoutProducts, isProductDetailOpen, isCheckoutOpen } = useContext(ShoppingCartContext)
+    const { setCartCounter, setIsProductDetailOpen, setProductToShow, setIsCheckoutOpen, setCheckoutProducts, isCheckoutClicked, setIsCheckoutClicked, checkoutProducts } = useContext(ShoppingCartContext)
     const [isAdded, setIsAdded] = useState(false)
 
     useEffect(() => {
-        const titles = [];
-        titles.slice(0, titles.length)
-        checkoutProducts?.products?.forEach(product => {
-            titles.push(product.title)
-        })
+        const titles = checkoutProducts?.products?.map(({ title }) => title)
         titles.includes(title) ? (setIsAdded(true)) : setIsAdded(false)
         isCheckoutClicked && (setIsAdded(false), setIsCheckoutClicked(false))
     }, [checkoutProducts, isCheckoutClicked])

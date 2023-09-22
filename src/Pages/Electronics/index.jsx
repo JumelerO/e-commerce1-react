@@ -2,6 +2,7 @@
 import { Layout } from "../../Components/Layout"
 import { Card } from "../../Components/Card"
 import {ProductDetail}  from "../../Components/ProductDetail"
+import { SearchInput } from '../../Components/SearchInput'
 import { ShoppingCartContext } from "../../Context"
 import { useEffect, useContext } from "react"
 import { Checkout } from "../../Components/Checkout"
@@ -20,6 +21,7 @@ function Electronics() {
 
     return(
         <>
+            <SearchInput />
             <Layout>
                 <div className="grid grid-cols-4 gap-4 w-full max-w-screen-lg">
                         {

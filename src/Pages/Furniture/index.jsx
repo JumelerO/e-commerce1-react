@@ -3,6 +3,7 @@ import { Layout } from "../../Components/Layout"
 import { Card } from "../../Components/Card"
 import { useEffect, useContext } from "react"
 import {ProductDetail} from "../../Components/ProductDetail"
+import { SearchInput } from '../../Components/SearchInput'
 import { Checkout } from "../../Components/Checkout"
 import { ShoppingCartContext } from "../../Context"
 
@@ -21,6 +22,7 @@ function Furniture() {
 
     return(
         <>
+            <SearchInput />
             <Layout>
                 <div className="grid grid-cols-4 gap-4 w-full max-w-screen-lg">
                     {
